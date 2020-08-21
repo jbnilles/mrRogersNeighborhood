@@ -20,12 +20,18 @@
       </div>
       <div class="card-body">
         <form id="listForm">
-          <label for="listInput">Enter an number: </label>
-          <input type="number" name="list" required id="listInput">
-          <button class="btn btn-outline-primary" type="submit">Submit</button>
-          <button class="btn btn-outline-primary" id="reverseButton">Reversed</button>
-          <label for="nameInput" id="nameLabel">Enter your name: </label>
-          <input type="text" name="name" id="nameInput">
+          <div class="form-group">
+            <label for="listInput">Enter an number: </label>
+            <input type="number" name="list" required id="listInput">
+          </div>  
+          <div class="form-group">
+            <label for="nameInput" id="nameLabel">Enter your name: </label>
+            <input type="text" name="name" id="nameInput">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">Submit</button>
+            <button class="btn btn-outline-primary" id="reverseButton">Reversed</button>
+          </div>
         </form>
         
         <p class="btn btn-link" id="nameP">add/remove name</p>

@@ -10,3 +10,28 @@
 #nameInput{
   display: none;
 }
+body{
+  background-color: #D8C3A5;
+
+}
+.container{
+}
+.jumbotron{
+  background-color: #EAE7DC;
+  color: #E85A4F;
+  text-align: center;
+
+}
+.card{
+  background-color: #EAE7DC;
+  color: #8E8D8A;
+  margin-top: 25px;
+}
+.card-header{
+  background-color: #EAE7DC;
+  color: #E98074;
+
+}
+#nameP{
+  font-size: small;
+}
