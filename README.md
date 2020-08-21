@@ -11,7 +11,8 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
-| **The program returns a range of numbers from 0 to the users inputted number** | "4" | "0, 1, 2, 3, 4" |
+| **The program returns a range of numbers from 0 to the users inputted number** | 4 | "0, 1, 2, 3, 4" |
+| **The program will replace Numbers that contain a 1 with "Beep!"** | 12 | "0, 'Beep!', 2, 3, 4, ... , 9, 'Beeb!, Beeb!" |
 
 
 
