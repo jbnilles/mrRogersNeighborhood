@@ -29,7 +29,7 @@ _does not handle user input that is negative_
 
 ## Support and contact details
 
-_ contact the auther at: jbnilles24@gmail.com_
+_contact the auther at: jbnilles24@gmail.com_
 
 ## Technologies Used
 
