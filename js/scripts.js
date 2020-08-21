@@ -71,5 +71,9 @@ $(document).ready(function () {
     $('#nameInput').fadeToggle();
 
   });
+  $('#clearButton').click(function () {
+    $('#resultList').text('');
+  });
+
 
 });

@@ -30,8 +30,14 @@ body{
 .card-header{
   background-color: #EAE7DC;
   color: #E98074;
+  overflow: hidden;
+  
 
 }
 #nameP{
   font-size: small;
+}
+#clearButton{
+  /* display: block; */
+  float: right;
 }
