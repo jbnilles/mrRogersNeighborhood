@@ -11,10 +11,7 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
-| **add the value of all the symbols** | 66 |LXVI |
-| **there may not be more than three of the same characters in a row. Instead, you switch to subtraction.** | 90 | XC |
-| **separate ones, tens, hundreds, and thousands**| 99 | XCIX |
-| **check user input for proper entry**| 2.5 | return error |
+| **The program returns a range of numbers from 0 to the users inputted number** | "4" | "0, 1, 2, 3, 4" |
 
 
 
