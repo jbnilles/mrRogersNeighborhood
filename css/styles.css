@@ -1,43 +1,35 @@
-#resultCard{
+#resultCard {
   display: none;
 }
-#nameForm{
+#nameForm {
   display: none;
 }
-#nameLabel{
+#nameLabel {
   display: none;
 }
-#nameInput{
+#nameInput {
   display: none;
 }
-body{
+body {
   background-color: #D8C3A5;
-
 }
-.container{
-}
-.jumbotron{
+.jumbotron {
   background-color: #EAE7DC;
   color: #E85A4F;
   text-align: center;
-
 }
-.card{
+.card {
   background-color: #EAE7DC;
   color: #8E8D8A;
   margin-top: 25px;
 }
-.card-header{
+.card-header {
   background-color: #EAE7DC;
   color: #E98074;
-  overflow: hidden;
-  
-
 }
-#nameP{
+#nameP {
   font-size: small;
 }
-#clearButton{
-  /* display: block; */
+#clearButton {
   float: right;
 }
