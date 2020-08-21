@@ -10,7 +10,7 @@ function makeList(number, name) {
   if(isName(name)) {
     name = ', ' + name;
   }
-  for(let i = 0; i < number; i++) {
+  for(let i = 0; i < Math.abs(number); i++) {
     if (i.toString().includes('3')) {
       result.push("Won't you be my neighbor" + name + "?");
     } else if(i.toString().includes('2')) {

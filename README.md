@@ -6,7 +6,7 @@
 
 ## Description
 
-_This program takes a user input of a number and it will display a string, that lists all the numbers up to and including the one entered and will search and replace and number that includes a 1,2 or a 3 and replace it with a beeb! for 1, a boob! for 2 and 'Won't you be my neighbor?' for 3_
+_This program takes a user input of a number and it will display a string, that lists all the numbers up to and including the one entered and will search and replace and number that includes a 1,2 or a 3 and replace it with a beeb! for 1, a boop! for 2 and 'Won't you be my neighbor?' for 3_
 
 ### Specs
 | Spec | Input | Output |
