@@ -25,5 +25,12 @@ $(document).ready(function () {
     $('#resultList').prepend('<li>' + userInput + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
     $('#resultCard').show();
   });
+  $('#reverseButton').click(function () {
+    event.preventDefault();
+    let userInput = parseInt($('#listInput').val());
+    let result = createList(userInput);
+    $('#resultList').prepend('<li>' + userInput + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
+    $('#resultCard').show();
+  });
 
 });
