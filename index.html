@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Document</title>
+  <title>MrRogersNeighborhood</title>
   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="css/styles.css" rel="stylesheet" type="text/css">
   <script src="js/jquery-3.5.1.js"></script>
@@ -10,8 +10,29 @@
 </head>
 
 <body>
-  
+  <div class="container">
+    <div class="jumbotron">
+      <h2 class="display-4">Mr. Rogers Neighborhood</h2>
+    </div>
+    <div class="card">
+      <h4 class="card-header">Enter a number:</h4>
+      <div class="card-body">
+        <form id="listForm">
+          <!-- <label for="listLabel">Enter an number: </label> -->
+          <input type="number" name="list" required id="listInput">
+          <button class="btn btn-outline-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="card">
+      <h4 class="card-header">Result:</h4>
+      <div class="card-body">
+        <ul id="resultList">
 
+        </ul>
+      </div>
+    </div>
+  </div>
 
   </div>
 </body>
