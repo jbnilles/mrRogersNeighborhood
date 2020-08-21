@@ -18,5 +18,12 @@ function createList (number) {
 
 $(document).ready(function () {
 
+  $('#listForm').submit(function () {
+    event.preventDefault();
+    let userInput = parseInt($('#listInput').val());
+    let result = createList(userInput);
+    $('#resultList').prepend('<li>' + userInput + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
+    $('#resultCard').show();
+  });
 
 });
