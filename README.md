@@ -25,7 +25,7 @@ _This program takes a user input of a number and it will display a string, that 
 
 ## Known Bugs
 
-_does not handle user input that is negative_
+_None_
 
 ## Support and contact details
 
