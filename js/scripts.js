@@ -19,8 +19,14 @@ RulesList.prototype.createDefaultRules = function () {
   this.rules.push(new Rule('1','Beep!',0));
   this.rules.push(new Rule('2','Boop!',1));
   this.rules.push(new Rule('3',"Won't you be my neighbor?",2));
+  this.setDefaultRules();
 }
-
+RulesList.prototype.setDefaultRules = function () {
+  this.isDefaultRules = true;
+}
+RulesList.prototype.setCustomRules = function () {
+  this.isDefaultRules = false;
+}
 
 RulesList.prototype.resetRules = function() {
   this.rules = [];
@@ -100,14 +106,21 @@ function writeRulesToList(dom) {
 }
 $(document).ready(function () {
   
-  createDefaultRules();
+  RULES.createDefaultRules();
   writeRulesToList($('#rulesList'));
+
   $('#listForm').submit(function (event) {
     event.preventDefault();
     let userNumber = parseInt($('#listInput').val());
     let userName = $('#nameInput').val().trim();
-    let result = makeList(userNumber, userName);
-    $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
+    if(RULES.isDefaultRules) {
+      let result = makeList(userNumber, userName);
+      $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
+    } else {
+      let result = makeCustomList(userNumber);
+      $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
+    }
+    
     $('#resultCard').show();
   });
 
@@ -117,7 +130,14 @@ $(document).ready(function () {
     let userName = $('#nameInput').val().trim();
     let result = makeList(userNumber, userName);
     if(result.length) {
-      $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
+      if(RULES.isDefaultRules) {
+        let result = makeList(userNumber, userName);
+        $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
+      } else {
+        let result = makeCustomList(userNumber);
+        $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse.join(', ') + '</li></ul></li>');
+      }
+      
       $('#resultCard').show();
     }
   });
@@ -135,7 +155,8 @@ $(document).ready(function () {
     
     $('#customButton').prop('disabled', true);
     $('#defaultButton').prop('disabled', false);
-    resetRules();
+    RULES.resetRules();
+    RULES.setCustomRules();
     writeRulesToList($('#rulesList'));
     $('#ruleForm').show();
     $('#nameP').hide();
@@ -149,7 +170,8 @@ $(document).ready(function () {
     
     $('#customButton').prop('disabled', false);
     $('#defaultButton').prop('disabled', true);
-    createDefaultRules();
+    RULES.createDefaultRules();
+    RULES.setDefaultRules();
     writeRulesToList($('#rulesList'));
     $('#ruleForm').hide();
     $('#nameP').prop('disabled', false);
@@ -161,7 +183,7 @@ $(document).ready(function () {
     $('#replaceInput').val('');
     let replaceWith = $('#replaceWithInput').val();
     $('#replaceWithInput').val('');
-    addRule(replace, replaceWith, getAmountOfRules - 1);
+    RULES.addRule(replace, replaceWith, RULES.getAmountOfRules - 1);
     //resetRules();
     //alert(RULES);
     writeRulesToList($('#rulesList'));
