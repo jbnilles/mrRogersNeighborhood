@@ -1,11 +1,20 @@
 function Rule () {
   this.toReplace;
   this.toReplaceWith;
+  this.value;
 }
-function Rule (replace, replaceWith) {
+function Rule (replace, replaceWith, value) {
   this.toReplace = replace;
   this.toReplaceWith = replaceWith;
+  this.value = value;
 }
+let rules = [];
+rules.push(new Rule('start0','',0));
+rules.push(new Rule('start1','',1));
+
+
+
+
 function isName(name) {
   if(name === "") {
     return false;
@@ -30,6 +39,28 @@ function makeList(number, name) {
     }
   }
   return result;
+}
+function increaseRuleOrder(rules, index) {
+  if(rules.length > 1) {
+    if(index > 0 ) {
+      rules[index].value--;
+      rules[index - 1].value++;
+    }
+ 
+  }
+}
+function decreaseRuleOrder(rules, index) {
+  if(rules.length > 1) {
+    if(index < rules.length - 1 ) {
+      rules[index].value++;
+      rules[index + 1].value--;
+    }
+  }
+}
+function sortRulesByImportance(rules) {
+  rules.sort(function (a,b) {
+    return a.value - b.value;
+  });
 }
 function makeCustomList(number, name, rules) {
   let result = [];
