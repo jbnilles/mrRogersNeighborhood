@@ -8,29 +8,51 @@ function Rule (replace, replaceWith, value) {
   this.toReplaceWith = replaceWith;
   this.value = value;
 }
-let RULES = [];
+let RULES = new RulesList;
 
-
-function createDefaultRules () {
-  RULES = [];
-  RULES.push(new Rule('1','Beep!',0));
-  RULES.push(new Rule('2','Boop!',1));
-  RULES.push(new Rule('3',"Won't you be my neighbor?",2));
+function RulesList () {
+  this.rules = [];
+  this.isDefaultRules;
 }
-function writeRulesToList(dom) {
-  dom.html('');
-  RULES.forEach(element => {
-    dom.append('<li>Replace" ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
-    
+RulesList.prototype.createDefaultRules = function () {
+  this.resetRules();
+  this.rules.push(new Rule('1','Beep!',0));
+  this.rules.push(new Rule('2','Boop!',1));
+  this.rules.push(new Rule('3',"Won't you be my neighbor?",2));
+}
+
+
+RulesList.prototype.resetRules = function() {
+  this.rules = [];
+}
+ RulesList.prototype.addRule = function (replace, replaceWith, value) {
+  this.rules.push(new Rule(replace, replaceWith, value));
+}
+RulesList.prototype.getAmountOfRules = function () {
+  return this.rules.length;
+}
+ RulesList.prototype.increaseRuleOrder = function(index) {
+  if(this.rules.length > 1) {
+    if(index > 0 ) {
+      this.rules[index].value--;
+      this.rules[index - 1].value++;
+    }
+ 
+  }
+}
+RulesList.prototype.decreaseRuleOrder = function(index) {
+  if(this.rules.length > 1) {
+    if(index < rules.length - 1 ) {
+      this.rules[index].value++;
+      this.rules[index + 1].value--;
+    }
+  }
+}
+RulesList.prototype.sortRulesByImportance = function() {
+  this.rules.sort(function (a,b) {
+    return a.value - b.value;
   });
 }
-function resetRules() {
-  RULES = [];
-}
-function addRule(replace, replaceWith, value) {
-  RULES.push(new Rule(replace, replaceWith, value));
-}
-
 
 function isName(name) {
   if(name === "") {
@@ -57,35 +79,11 @@ function makeList(number, name) {
   }
   return result;
 }
-function increaseRuleOrder(rules, index) {
-  if(rules.length > 1) {
-    if(index > 0 ) {
-      rules[index].value--;
-      rules[index - 1].value++;
-    }
- 
-  }
-}
-function decreaseRuleOrder(rules, index) {
-  if(rules.length > 1) {
-    if(index < rules.length - 1 ) {
-      rules[index].value++;
-      rules[index + 1].value--;
-    }
-  }
-}
-function sortRulesByImportance(rules) {
-  rules.sort(function (a,b) {
-    return a.value - b.value;
-  });
-}
-function makeCustomList(number, name, rules) {
+
+function makeCustomList(number) {
   let result = [];
-  if(isName(name)) {
-    name = ', ' + name;
-  }
   for(let i = 0; i <= Math.abs(number); i++) {
-    rules.forEach(element => {
+    RULES.rules.forEach(element => {
       if (i.toString().includes(element.replace)) {
         result.push(replaceWith);
       } 
@@ -93,11 +91,18 @@ function makeCustomList(number, name, rules) {
   }
   return result;
 }
-
+function writeRulesToList(dom) {
+  dom.html('');
+  RULES.rules.forEach(element => {
+    dom.append('<li>Replace ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
+    
+  });
+}
 $(document).ready(function () {
+  
   createDefaultRules();
   writeRulesToList($('#rulesList'));
-  $('#listForm').submit(function () {
+  $('#listForm').submit(function (event) {
     event.preventDefault();
     let userNumber = parseInt($('#listInput').val());
     let userName = $('#nameInput').val().trim();
@@ -106,7 +111,7 @@ $(document).ready(function () {
     $('#resultCard').show();
   });
 
-  $('#reverseButton').click(function () {
+  $('#reverseButton').click(function (event) {
     event.preventDefault();
     let userNumber = parseInt($('#listInput').val());
     let userName = $('#nameInput').val().trim();
@@ -127,21 +132,39 @@ $(document).ready(function () {
     $('#resultList').text('');
   });
   $('#customButton').click(function () {
-    event.preventDefault();
+    
     $('#customButton').prop('disabled', true);
     $('#defaultButton').prop('disabled', false);
     resetRules();
     writeRulesToList($('#rulesList'));
+    $('#ruleForm').show();
+    $('#nameP').hide();
+    $('#nameLabel').hide();
+    $('#nameInput').hide();
+
+
     
   });
   $('#defaultButton').click(function () {
-    event.preventDefault();
+    
     $('#customButton').prop('disabled', false);
     $('#defaultButton').prop('disabled', true);
     createDefaultRules();
     writeRulesToList($('#rulesList'));
-    
-    
+    $('#ruleForm').hide();
+    $('#nameP').prop('disabled', false);
+    $('#nameP').show();
+  });
+  $('#ruleForm').submit(function (event) {
+    event.preventDefault();
+    let replace = $('#replaceInput').val();
+    $('#replaceInput').val('');
+    let replaceWith = $('#replaceWithInput').val();
+    $('#replaceWithInput').val('');
+    addRule(replace, replaceWith, getAmountOfRules - 1);
+    //resetRules();
+    //alert(RULES);
+    writeRulesToList($('#rulesList'));
   });
 
 });
