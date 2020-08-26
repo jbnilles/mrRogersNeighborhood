@@ -14,26 +14,40 @@
     <div class="jumbotron">
       <h2 class="display-4">Mr. Rogers Neighborhood</h2>
     </div>
-    <div class="card">
-      <div class="card-header">
-      <h4 class="card-title">Enter a number:</h4>
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">
+          <h4 class="card-title">Enter a number:</h4>
+          </div>
+          <div class="card-body">
+            <form id="listForm">
+              <div class="form-group">
+                <label for="listInput">Enter an number: </label>
+                <input type="number" name="list" required id="listInput">
+              </div>  
+              <div class="form-group">
+                <label for="nameInput" id="nameLabel">Enter your name: </label>
+                <input type="text" name="name" id="nameInput">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-outline-primary" type="submit">Submit</button>
+                <button class="btn btn-outline-primary"  id="reverseButton">Reversed</button>
+              </div>
+            </form>
+            <p class="btn btn-link" id="nameP">add/remove name</p>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <form id="listForm">
-          <div class="form-group">
-            <label for="listInput">Enter an number: </label>
-            <input type="number" name="list" required id="listInput">
-          </div>  
-          <div class="form-group">
-            <label for="nameInput" id="nameLabel">Enter your name: </label>
-            <input type="text" name="name" id="nameInput">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">
+          <h4 class="card-title">Rules</h4>
           </div>
-          <div class="form-group">
-            <button class="btn btn-outline-primary" type="submit">Submit</button>
-            <button class="btn btn-outline-primary" required id="reverseButton">Reversed</button>
+          <div class="card-body">
+            <ol id="rulesList"></ol>
           </div>
-        </form>
-        <p class="btn btn-link" id="nameP">add/remove name</p>
+        </div>
       </div>
     </div>
     <div class="card" id="resultCard">

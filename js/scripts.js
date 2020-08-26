@@ -8,11 +8,21 @@ function Rule (replace, replaceWith, value) {
   this.toReplaceWith = replaceWith;
   this.value = value;
 }
-let rules = [];
-rules.push(new Rule('start0','',0));
-rules.push(new Rule('start1','',1));
+let RULES = [];
 
 
+function createDefaultRules () {
+  RULES.push(new Rule('1','Beep!',0));
+  RULES.push(new Rule('2','Boop!',1));
+  RULES.push(new Rule('3',"Won't you be my neighbor?",2));
+}
+function writeRulesToList(dom) {
+  dom.html('');
+  RULES.forEach(element => {
+    dom.append('<li>Replace" ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
+    
+  });
+}
 
 
 function isName(name) {
@@ -40,7 +50,7 @@ function makeList(number, name) {
   }
   return result;
 }
-function increaseRuleOrder(rules, index) {
+function decreaseRuleOrder(rules, index) {
   if(rules.length > 1) {
     if(index > 0 ) {
       rules[index].value--;
@@ -49,7 +59,7 @@ function increaseRuleOrder(rules, index) {
  
   }
 }
-function decreaseRuleOrder(rules, index) {
+function increaseRuleOrder(rules, index) {
   if(rules.length > 1) {
     if(index < rules.length - 1 ) {
       rules[index].value++;
@@ -78,7 +88,8 @@ function makeCustomList(number, name, rules) {
 }
 
 $(document).ready(function () {
-
+  createDefaultRules();
+  writeRulesToList($('#rulesList'));
   $('#listForm').submit(function () {
     event.preventDefault();
     let userNumber = parseInt($('#listInput').val());
