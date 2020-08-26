@@ -33,7 +33,7 @@ RulesList.prototype.setCustomRules = function () {
   this.isDefaultRules = false;
 }
 
-RulesList.prototype.resetRules = function() {
+RulesList.prototype.resetRules = function () {
   this.rules = [];
 }
 
@@ -45,7 +45,7 @@ RulesList.prototype.getAmountOfRules = function () {
   return this.rules.length;
 }
 
- RulesList.prototype.increaseRuleOrder = function(index) {
+ RulesList.prototype.increaseRuleOrder = function (index) {
   if(this.rules.length > 1) {
     if(index > 0 ) {
       this.rules[index].value--;
@@ -54,7 +54,7 @@ RulesList.prototype.getAmountOfRules = function () {
   }
 }
 
-RulesList.prototype.decreaseRuleOrder = function(index) {
+RulesList.prototype.decreaseRuleOrder = function (index) {
   if(this.rules.length > 1) {
     if(index < rules.length - 1 ) {
       this.rules[index].value++;
@@ -63,20 +63,20 @@ RulesList.prototype.decreaseRuleOrder = function(index) {
   }
 }
 
-RulesList.prototype.sortRulesByImportance = function() {
+RulesList.prototype.sortRulesByImportance = function () {
   this.rules.sort(function (a,b) {
     return a.value - b.value;
   });
 }
 
-function isName(name) {
+function isName (name) {
   if(name === "") {
     return false;
   }
   return true;
 }
 
-function makeList(number, name) {
+function makeList (number, name) {
   let result = [];
   if(isName(name)) {
     name = ', ' + name;
@@ -95,7 +95,7 @@ function makeList(number, name) {
   return result;
 }
 
-function makeCustomList(number) {
+function makeCustomList (number) {
   let result = [];
   for(let i = 0; i <= Math.abs(number); i++) {
     RULES.rules.forEach(element => {
@@ -109,14 +109,14 @@ function makeCustomList(number) {
   }
   return result;
 }
-function writeRulesToList(dom) {
+function writeRulesToList (dom) {
   dom.html('');
   RULES.rules.forEach(element => {
     dom.append('<li>Replace ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
   });
 }
 $(document).ready(function () {
-  
+
   RULES.createDefaultRules();
   writeRulesToList($('#rulesList'));
 
@@ -197,6 +197,4 @@ $(document).ready(function () {
     RULES.resetRules();
     writeRulesToList($('#rulesList'));
   });
-
-
 });
