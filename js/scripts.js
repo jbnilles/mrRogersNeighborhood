@@ -192,6 +192,11 @@ $(document).ready(function () {
     RULES.addRule(replace, replaceWith, RULES.getAmountOfRules - 1);
     writeRulesToList($('#rulesList'));
   });
+  
+  $('#clearRulesButton').click(function () {
+    RULES.resetRules();
+    writeRulesToList($('#rulesList'));
+  });
 
 
 });
