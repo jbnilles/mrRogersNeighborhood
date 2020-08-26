@@ -14,7 +14,7 @@ _This program takes a user input of a number and it will display a string, that 
 | **The program returns a range of numbers from 0 to the users inputted number** | 4 | "0, 1, 2, 3, 4" |
 | **The program will replace Numbers that contain a 1 with "Beep!"** | 12 | "0, 'Beep!', 2, 3, 4, ... , 9, 'Beeb!, 'Beeb!'" |
 | **The program will replace Numbers that contain a 2 with "Boop!"** | 13 | "0, 'Beep!', 'Boop!', 3, 4, ... , 9, 'Beeb!, 'Beeb!', 'Boop!'" |
-| **The program will replace Numbers that contain a  with "Won't you be my neighbor?"** | 14 | "0, 'Beep!', 'Boop!', 'Won't you be my neighbor?', 4, ... , 9, 'Beeb!, 'Beeb!', 'Boop!', 'Won't you be my neighbor?'" |
+| **The program will replace Numbers that contain a 3 with "Won't you be my neighbor?"** | 14 | "0, 'Beep!', 'Boop!', 'Won't you be my neighbor?', 4, ... , 9, 'Beeb!, 'Beeb!', 'Boop!', 'Won't you be my neighbor?'" |
 
 
 
