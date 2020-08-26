@@ -46,6 +46,19 @@
           </div>
           <div class="card-body">
             <ol id="rulesList"></ol>
+
+            <form id="ruleForm">
+              <div class="form-group">
+                <label for="replaceInput">Replace: </label>
+                <input type="number"  required id="replaceInput" width="25%">
+                <label for="replaceWithInput"> With: </label>
+                <input type="text"  required id="replaceWithInput">
+                <button type="submit" class="btn btn-outline-primary">Add Rule</button>
+              </div>  
+              
+            </form>
+            <button type="button" class="btn btn-outline-primary" id="defaultButton" disabled> Use Default Rules</button>
+            <button type="button" class="btn btn-outline-primary" id='customButton'> Use Custom Rules</button>
           </div>
         </div>
       </div>

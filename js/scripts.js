@@ -12,6 +12,7 @@ let RULES = [];
 
 
 function createDefaultRules () {
+  RULES = [];
   RULES.push(new Rule('1','Beep!',0));
   RULES.push(new Rule('2','Boop!',1));
   RULES.push(new Rule('3',"Won't you be my neighbor?",2));
@@ -22,6 +23,12 @@ function writeRulesToList(dom) {
     dom.append('<li>Replace" ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
     
   });
+}
+function resetRules() {
+  RULES = [];
+}
+function addRule(replace, replaceWith, value) {
+  RULES.push(new Rule(replace, replaceWith, value));
 }
 
 
@@ -50,7 +57,7 @@ function makeList(number, name) {
   }
   return result;
 }
-function decreaseRuleOrder(rules, index) {
+function increaseRuleOrder(rules, index) {
   if(rules.length > 1) {
     if(index > 0 ) {
       rules[index].value--;
@@ -59,7 +66,7 @@ function decreaseRuleOrder(rules, index) {
  
   }
 }
-function increaseRuleOrder(rules, index) {
+function decreaseRuleOrder(rules, index) {
   if(rules.length > 1) {
     if(index < rules.length - 1 ) {
       rules[index].value++;
@@ -108,7 +115,6 @@ $(document).ready(function () {
       $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
       $('#resultCard').show();
     }
-    
   });
 
   $('#nameP').click(function () {
@@ -119,6 +125,23 @@ $(document).ready(function () {
   });
   $('#clearButton').click(function () {
     $('#resultList').text('');
+  });
+  $('#customButton').click(function () {
+    event.preventDefault();
+    $('#customButton').prop('disabled', true);
+    $('#defaultButton').prop('disabled', false);
+    resetRules();
+    writeRulesToList($('#rulesList'));
+    
+  });
+  $('#defaultButton').click(function () {
+    event.preventDefault();
+    $('#customButton').prop('disabled', false);
+    $('#defaultButton').prop('disabled', true);
+    createDefaultRules();
+    writeRulesToList($('#rulesList'));
+    
+    
   });
 
 });
