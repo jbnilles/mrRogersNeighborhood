@@ -1,4 +1,4 @@
-let RULES = new RulesList;
+
 
 function Rule () {
   this.toReplace;
@@ -95,7 +95,7 @@ function makeList (number, name) {
   return result;
 }
 
-function makeCustomList (number) {
+function makeCustomList (number, RULES) {
   let result = [];
   for(let i = 0; i <= Math.abs(number); i++) {
     RULES.rules.forEach(element => {
@@ -109,26 +109,26 @@ function makeCustomList (number) {
   }
   return result;
 }
-function writeRulesToList (dom) {
+function writeRulesToList (dom, RULES) {
   dom.html('');
   RULES.rules.forEach(element => {
     dom.append('<li>Replace ' + element.toReplace + ' with ' + element.toReplaceWith + '</li>');
   });
 }
 $(document).ready(function () {
-
-  RULES.createDefaultRules();
-  writeRulesToList($('#rulesList'));
+  let rules = new RulesList();
+  rules.createDefaultRules();
+  writeRulesToList($('#rulesList'), rules);
 
   $('#listForm').submit(function (event) {
     event.preventDefault();
     let userNumber = parseInt($('#listInput').val());
     let userName = $('#nameInput').val().trim();
-    if(RULES.isDefaultRules) {
+    if(rules.isDefaultRules) {
       let result = makeList(userNumber, userName);
       $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
     } else {
-      let result = makeCustomList(userNumber);
+      let result = makeCustomList(userNumber, rules);
       $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.join(', ') + '</li></ul></li>');
     }
     $('#resultCard').show();
@@ -139,11 +139,11 @@ $(document).ready(function () {
     let userNumber = parseInt($('#listInput').val());
     let userName = $('#nameInput').val().trim();
     if(userNumber) {
-      if(RULES.isDefaultRules) {
+      if(rules.isDefaultRules) {
         let result = makeList(userNumber, userName);
         $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
       } else {
-        let result = makeCustomList(userNumber);
+        let result = makeCustomList(userNumber,rules);
         $('#resultList').prepend('<li>' + userNumber + ': <ul><li>' + result.reverse().join(', ') + '</li></ul></li>');
       }
       $('#resultCard').show();
@@ -163,9 +163,9 @@ $(document).ready(function () {
   $('#customButton').click(function () {
     $('#customButton').prop('disabled', true);
     $('#defaultButton').prop('disabled', false);
-    RULES.resetRules();
-    RULES.setCustomRules();
-    writeRulesToList($('#rulesList'));
+    rules.resetRules();
+    rules.setCustomRules();
+    writeRulesToList($('#rulesList'),rules);
     $('#ruleForm').show();
     $('#nameP').hide();
     $('#nameLabel').hide();
@@ -175,9 +175,9 @@ $(document).ready(function () {
   $('#defaultButton').click(function () {
     $('#customButton').prop('disabled', false);
     $('#defaultButton').prop('disabled', true);
-    RULES.createDefaultRules();
-    RULES.setDefaultRules();
-    writeRulesToList($('#rulesList'));
+    rules.createDefaultRules();
+    rules.setDefaultRules();
+    writeRulesToList($('#rulesList'),rules);
     $('#ruleForm').hide();
     $('#nameP').prop('disabled', false);
     $('#nameP').show();
@@ -189,12 +189,12 @@ $(document).ready(function () {
     $('#replaceInput').val('');
     let replaceWith = $('#replaceWithInput').val();
     $('#replaceWithInput').val('');
-    RULES.addRule(replace, replaceWith, RULES.getAmountOfRules - 1);
-    writeRulesToList($('#rulesList'));
+    rules.addRule(replace, replaceWith, rules.getAmountOfRules - 1);
+    writeRulesToList($('#rulesList'),rules);
   });
   
   $('#clearRulesButton').click(function () {
-    RULES.resetRules();
-    writeRulesToList($('#rulesList'));
+    rules.resetRules();
+    writeRulesToList($('#rulesList'), rules);
   });
 });
