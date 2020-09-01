@@ -98,7 +98,7 @@ function makeList (number, name) {
 function makeCustomList (number, RULES) {
   let result = [];
   for(let i = 0; i <= Math.abs(number); i++) {
-    RULES.rules.forEach(element => {
+    RULES.rules.forEach(element => {// change this to a for loop and break if a rule is added 
       if (i.toString().includes(element.toReplace)) {
         result.push(element.toReplaceWith);
       } 
