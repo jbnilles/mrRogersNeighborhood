@@ -31,7 +31,7 @@ _This program takes a user input of a number and it will display a string, that 
 
 ## Known Bugs
 
-_None_
+_When 2 custom rules are added that conflict with each other and they both get pushed to the result instead of using rulre heirachy_
 
 ## Support and contact details
 
